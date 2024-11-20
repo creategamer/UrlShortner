@@ -21,7 +21,7 @@ app.use(checkForAuthentication)
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./view'))
 
-connnectMongoDB('mongodb://127.0.0.1:27017/shortUrl')
+connnectMongoDB(process.env.MONGODB ?? 'mongodb://127.0.0.1:27017/shortUrl')
     .then(() => console.log('mongodb connected'))
 
 app.use('/url', restrictTo(['NORMAL', 'ADMIN']), urlRoute)
